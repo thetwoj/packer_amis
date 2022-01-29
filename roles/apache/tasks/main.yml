@@ -1,0 +1,21 @@
+- name: Install HTTP Packages
+  yum: name=httpd update_cache=yes state=latest
+ 
+- name: Enable httpd service
+  service: name=httpd enabled=yes
+
+- name: Install mod_ssl
+  yum: name=mod_ssl update_cache=yes state=latest
+ 
+- name: Set up Apache VirtualHost
+  template:
+    src: "files/httpd.conf"
+    dest: "/etc/httpd/conf.d/{{ http_conf }}"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Create dir to mount wordpress efs to
+  file:
+    path: "{{ efs_path }}"
+    state: directory

@@ -1,0 +1,15 @@
+- name : Install amazon-linux-extras repo for epel
+  shell: amazon-linux-extras install epel -y
+
+- name : Install certbot
+  yum: name=certbot update_cache=yes state=latest
+
+- name : Install python-certbot
+  yum: name={{ certbot_package }} update_cache=yes state=latest
+ 
+- name: Set Letsencrypt cron for cert auto-renewal
+  cron: 
+    name: "letsencrypt renewal"
+    hour: "7"
+    minute: "15"
+    job: "/usr/bin/certbot renew"

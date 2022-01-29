@@ -1,0 +1,33 @@
+- name: Install mariadb
+  shell: amazon-linux-extras install -y lamp-mariadb10.2-php7.2
+
+- name: Install mariadb-server
+  yum: name=mariadb-server update_cache=yes state=latest
+
+- name: Set mariadb config
+  template:
+    src: "files/client.cnf"
+    dest: "/etc/my.cnf.d/client.cnf"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Update datadir in mariadb-server.cnf
+  lineinfile:
+    dest: "/etc/my.cnf.d/mariadb-server.cnf"
+    regexp: "datadir"
+    line: "datadir=/ebs/mysql"
+
+- name: Update mariadb socket location mariadb-server.cnf
+  lineinfile:
+    dest: "/etc/my.cnf.d/mariadb-server.cnf"
+    regexp: "socket"
+    line: "socket=/ebs/mysql/mysql.sock"
+
+- name: Create dir to mount ebs to
+  file:
+    path: "{{ ebs_path }}"
+    state: directory
+
+- name: Enable mariadb service
+  service: name=mariadb enabled=yes

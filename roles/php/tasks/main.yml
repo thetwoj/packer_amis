@@ -1,0 +1,8 @@
+- name: Install PHP
+  shell: amazon-linux-extras install -y php7.2
+
+- name: Update mariadb socket location in php.ini
+  lineinfile:
+    dest: "/etc/php.ini"
+    regexp: "mysqli.default_socket ="
+    line: "mysqli.default_socket = /ebs/mysql/mysql.sock"

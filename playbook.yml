@@ -1,0 +1,10 @@
+- hosts: all
+  become: yes
+  vars_files:
+    - vars/default.yml
+  roles:
+    - apache
+    - mariadb
+    - php
+    - cloudwatch-agent
+    - letsencrypt

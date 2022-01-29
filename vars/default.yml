@@ -1,0 +1,13 @@
+# Mariadb settings
+ebs_path: "/ebs"
+
+# HTTP settings
+http_host: "thetwoj.com"
+http_conf: "thetwoj.com.conf"
+http_port: "80"
+https_port: "443"
+doc_root: "/var/www/html/efs/wordpress"
+efs_path: "/var/www/html/efs"
+
+# Certbot settings
+certbot_package: "python2-certbot-apache"
