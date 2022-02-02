@@ -15,6 +15,7 @@ source "amazon-ebs" "linux2" {
   ami_name      = "packer-wordpress-linux2"
   instance_type = "t2.micro"
   region        = "us-east-2"
+  profile       = "personal"
 
   launch_block_device_mappings {
     device_name           = "/dev/xvda"

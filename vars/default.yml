@@ -9,5 +9,8 @@ https_port: "443"
 doc_root: "/var/www/html/efs/wordpress"
 efs_path: "/var/www/html/efs"
 
+# PHP settings
+php_modules: ["php-dom", "php-imagick", "php-mbstring", "php-intl"]
+
 # Certbot settings
 certbot_package: "python2-certbot-apache"
