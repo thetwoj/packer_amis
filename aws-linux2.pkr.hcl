@@ -12,10 +12,14 @@ packer {
 }
 
 source "amazon-ebs" "linux2" {
-  ami_name      = "packer-wordpress-linux2"
+  ami_name      = "packer-wordpress-{{timestamp}}"
   instance_type = "t2.micro"
   region        = "us-east-2"
   profile       = "personal"
+  tags = {
+    App = "Wordpress"
+    Name = "Packer Wordpress"
+  }
 
   launch_block_device_mappings {
     device_name           = "/dev/xvda"

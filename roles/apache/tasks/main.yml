@@ -4,9 +4,6 @@
 - name: Enable httpd service
   service: name=httpd enabled=yes
 
-- name: Install mod_ssl
-  yum: name=mod_ssl update_cache=yes state=latest
- 
 - name: Set up Apache VirtualHost
   template:
     src: "files/httpd.conf"
