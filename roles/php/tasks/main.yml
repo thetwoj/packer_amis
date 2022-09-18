@@ -1,5 +1,14 @@
-- name: Install PHP
-  shell: amazon-linux-extras install -y php7.2
+- name: Disable PHP 7.2
+  shell: amazon-linux-extras disable php7.2
+
+- name: Enable PHP 8.0
+  shell: amazon-linux-extras enable php8.0
+
+- name: Clean yum metadata
+  shell: yum clean metadata
+
+- name: Install PHP 8.0
+  shell: amazon-linux-extras install -y php8.0
 
 - name : Install recommended php modules for Wordpress
   yum: name={{ item }} update_cache=yes state=latest

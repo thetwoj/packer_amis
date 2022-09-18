@@ -1,5 +1,8 @@
-- name: Install mariadb
-  shell: amazon-linux-extras install -y lamp-mariadb10.2-php7.2
+- name: Disable mariadb 10.2
+  shell: amazon-linux-extras disable lamp-mariadb10.2-php7.2
+
+- name: Enable mariadb 10.5
+  shell: amazon-linux-extras enable mariadb10.5
 
 - name: Install mariadb-server
   yum: name=mariadb-server update_cache=yes state=latest
