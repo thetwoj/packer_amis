@@ -1,5 +1,5 @@
 - name: Enable php74 and epel repositories
-  shell: yum install -y amazon-cloudwatch-agent
+  yum: name=amazon-cloudwatch-agent update_cache=yes state=latest
 
 - name: Set amazon-cloudwatch-agent config
   template:

@@ -5,8 +5,8 @@ Requires [Packer](https://www.packer.io/) and [Ansible](https://docs.ansible.com
 
 After cloning do the following in the root dir:
 
-`packer init .`
+`AWS_PROFILE=<profile> packer init .`
 
-`packer validate .`
+`AWS_PROFILE=<profile> packer validate .`
 
-`packer build aws-linux2.pkr.hcl`
+`AWS_PROFILE=<profile> packer build aws-linux2.pkr.hcl`
