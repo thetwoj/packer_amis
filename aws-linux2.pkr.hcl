@@ -43,10 +43,6 @@ source "amazon-ebs" "linux2" {
   ssh_username = "ec2-user"
 }
 
-locals {
-  DD_API_KEY = aws_secretsmanager("DD_API_KEY", null)
-}
-
 build {
   name = "packer-wordpress"
   sources = ["source.amazon-ebs.linux2"]
@@ -57,7 +53,6 @@ build {
       "sudo yum update -y",
       "echo Installing htop, vim, amazon-efs-utils, statsd",
       "sudo yum install -y htop vim amazon-efs-utils statsd",
-      "DD_API_KEY=${local.DD_API_KEY} DD_SITE=\"datadoghq.com\" bash -c \"$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script_agent7.sh)\"",
     ]
   }
 
