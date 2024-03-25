@@ -13,7 +13,7 @@ packer {
 
 source "amazon-ebs" "linux2" {
   ami_name      = "packer-wordpress-{{timestamp}}"
-  instance_type = "t2.micro"
+  instance_type = "t4g.micro"
   region        = "us-east-2"
   profile       = "personal"
   tags = {
@@ -31,7 +31,7 @@ source "amazon-ebs" "linux2" {
 
   source_ami_filter {
     filters = {
-      architecture        = "x86_64"
+      architecture        = "arm64"
       name                = "*amzn2-ami-hvm-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
